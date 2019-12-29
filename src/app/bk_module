@@ -4,15 +4,21 @@ import {FormsModule} from '@angular/forms'
 import {HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
-
-
+import {RobotComponent} from './robot.component';
+import {ProductComponent} from './products/products.component'
+import {productFilter} from './products/product-filter-pipe'
+import { StarComponent } from './shared/star.component';
+import { ProductService } from './products/product.service';
+import { fromEventPattern } from 'rxjs';
+import { ProductDetail } from './products/product-detail.component';
 import { OrderComponent } from './orders/order.component';
 import { NotFound } from './shared/notFound.component';
 import { HomeComponent } from './home/home.component';
 import {RouterModule,Routes} from '@angular/router'
 import { ProductModule } from './products/products.module';
-const appRoutes2: Routes= [
-  
+const appRoutes: Routes= [
+    {path:'products',component:ProductComponent},
+    {path:'product-detail/:id',component:ProductDetail},
     {path:'orders',component:OrderComponent},
     {path:'home',component:HomeComponent},
     {path:'', redirectTo:'home',pathMatch:'full'},
@@ -25,17 +31,19 @@ imports:[
     FormsModule,
     HttpClientModule,
     ProductModule,
+ 
     RouterModule.forRoot(
-        appRoutes2 
+        appRoutes   
     )
 ],
 // this will contain all the components
 declarations:[ 
     AppComponent,
- 
-  
- 
-  
+    RobotComponent,
+    ProductComponent,
+    productFilter,
+    StarComponent,
+    ProductDetail,
     OrderComponent,
     NotFound,
    HomeComponent
@@ -46,9 +54,9 @@ bootstrap:[
 AppComponent
 
 ],
-// providers:[
-   
-// ]
+providers:[
+    ProductService
+]
 })
 
 export class AppModule{

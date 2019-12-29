@@ -1,10 +1,22 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core'
+
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    // only one selector and only one template
+    selector: 'app-component',
+    templateUrl: './app.component.html',
+//     template: 
+// //`<product-component></product-component>`
+//   `
+
+//   `            
+    
+    
 })
-export class AppComponent {
-  title = 'myDecember2019';
+
+
+export class AppComponent{
+ kk() : void{
+  alert("hello");
+}
 }

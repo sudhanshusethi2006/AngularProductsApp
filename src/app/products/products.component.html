@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1>products List page</h1>
+
+        </div>
+
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-2">filter by:{{FilterProduct}}</div>
+                <!-- <div *ngIF="FilterProduct==''">{{FilterProduct}}</div> -->
+
+                <div class="col-md-4">
+                    <input type="text" [(ngModel)]="FilterProduct" placeholder="enter your text" >
+
+                </div>
+            </div>
+            {{errorMessage}}
+            <!-- data binding -->
+            <div >{{title}}</div>
+            <div class="table-responsive">
+                <table class="table" *ngIf="ProductList && ProductList.length" >
+                    <thead>
+                        <tr>
+                            <th>
+                                <button type="button" class="btn btn-success" (click)="toggleImage()">Show Image</button>
+                            </th> 
+                            <th [style.width.px]="100">Name</th>
+                            <th>code</th>
+                            <th>Release Date</th>
+                            <th>price</th>
+                            <th>rating</th>
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of ProductList | productFilter:FilterProduct">
+                            <!-- this does not work for property binding -->
+                                <!-- <td><img src=[product.imageUrl] /> </td> -->
+                            <td><img [src]="product.imageUrl" *ngIf="showImage" /> </td>
+                            <td><a [routerLink]="['/product-detail',product.productId]"
+                               [queryParams]="{name:product.productName,img:product.imageUrl,description:product.description}" >{{product.productName | uppercase}}</a></td>
+                            <td>{{product.productCode}}</td>
+                            <td>{{product.releaseDate}}</td>
+                            <td>{{product.price | currency:"CAD"}}</td>
+                            <!-- <td>{{product.starRating}}</td> -->
+                            <td>{{product.starRating}}<stars [rating]="product.starRating"
+                                (clickOnRating)="function_clickOnRating($event)" >
+
+                            </stars></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
