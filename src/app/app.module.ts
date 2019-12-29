@@ -11,6 +11,7 @@ import { NotFound } from './shared/notFound.component';
 import { HomeComponent } from './home/home.component';
 import {RouterModule,Routes} from '@angular/router'
 import { ProductModule } from './products/products.module';
+
 const appRoutes2: Routes= [
   
     {path:'orders',component:OrderComponent},
@@ -25,6 +26,7 @@ imports:[
     FormsModule,
     HttpClientModule,
     ProductModule,
+   
     RouterModule.forRoot(
         appRoutes2 
     )
@@ -35,7 +37,7 @@ declarations:[
  
   
  
-  
+ 
     OrderComponent,
     NotFound,
    HomeComponent
